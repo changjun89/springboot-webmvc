@@ -7,7 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -21,24 +21,17 @@ public class SampleControllerTest {
 
     @Test
     public void helloTestGet() throws Exception {
-        mockMvc.perform(get("/hello"))
+        mockMvc.perform(get("/hello/changjun"))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(content().string("hello changjun"));
     }
 
     @Test
-    public void helloTestPost() throws Exception {
-        mockMvc.perform(post("/hello"))
+    public void hiTest() throws Exception {
+        mockMvc.perform(get("/hi.json"))
                 .andDo(print())
-                .andExpect(status().isMethodNotAllowed());
-    }
-
-
-    @Test
-    public void helloTestPatch() throws Exception {
-        mockMvc.perform(patch("/hello"))
-                .andDo(print())
-                .andExpect(status().isMethodNotAllowed());
+                .andExpect(status().isNotFound());
     }
 
 
