@@ -1,23 +1,24 @@
 package me.anpan.anpanwebmvc.web.controller;
 
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SampleController {
 
-    @GetMapping(value = "/hello" , headers = HttpHeaders.FROM+"=localhost")
+    @GetMapping(value = "/hello")
     @ResponseBody
     public String hello() {
-        return  "hello";
+        return "hello";
     }
 
-    @GetMapping("/hi")
+    @PostMapping(value = "/hello")
     @ResponseBody
-    public String hi() {
-        return  "hi ";
+    public String helloPost() {
+        return "hello";
     }
+
 
 }
