@@ -30,8 +30,8 @@ public class HandlerControllerTest {
 
     @Test
     public void getMemberByNme() throws Exception {
-        mockMvc.perform(post("/member").param("name", "changjun")
-                .param("tall", "10"))
+        mockMvc.perform(post("/member/name/changjun")//.param("name", "changjun")
+                .param("tall", "-10"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("name").value("changjun"));

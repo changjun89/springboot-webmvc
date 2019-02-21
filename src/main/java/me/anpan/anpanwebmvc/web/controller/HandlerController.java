@@ -3,7 +3,10 @@ package me.anpan.anpanwebmvc.web.controller;
 import me.anpan.anpanwebmvc.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class HandlerController {
@@ -17,12 +20,16 @@ public class HandlerController {
     }
 
 
-    @PostMapping("/member")
+    @PostMapping("/member/name/{name}")
     @ResponseBody
-    public Member getMemmberByName(Member member) {
-        System.out.println(member.getName());
-        System.out.println(member.getTall());
-
+    public Member getMemmberByName(@Valid  @ModelAttribute Member member , BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            System.out.println("#########################################################");
+            bindingResult.getAllErrors().forEach(c->{
+                System.out.println(c.toString());
+            });
+            System.out.println("#########################################################");
+        }
         return member;
     }
 

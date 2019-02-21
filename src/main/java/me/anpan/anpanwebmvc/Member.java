@@ -1,10 +1,15 @@
 package me.anpan.anpanwebmvc;
 
+import javax.validation.constraints.Min;
+
 public class Member {
 
-    private int id ;
+    private int id;
 
     private String name;
+
+    @Min(0)
+    private Integer tall;
 
     public Integer getTall() {
         return tall;
@@ -14,7 +19,7 @@ public class Member {
         this.tall = tall;
     }
 
-    private Integer tall;
+
 
     public String getName() {
         return name;
