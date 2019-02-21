@@ -8,7 +8,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,10 @@ public class HandlerController {
     }
 
     @GetMapping("/member/list")
-    public String getMembers(Model model) {
+    public String getMembers(Model model , @SessionAttribute("visitTime") LocalDateTime visitTime, HttpSession session) {
+        Object visitTime1 = (LocalDateTime)session.getAttribute("visitTime");
+        System.out.println("@@ : " + visitTime1);
+        System.out.println(visitTime);
         Member member = new Member();
         member.setName("spring");
         member.setTall(100);
