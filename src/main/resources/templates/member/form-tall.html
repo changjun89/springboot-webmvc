@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/member/form/tall}" method="post" th:object="${member}">
+    <p th:if="${#fields.hasErrors('tall')}" th:errors="*{tall}">Incorrect date</p>
+    <input type="text" title="tall" th:field="*{tall}"/>
+    <input type="submit" value="Create">
+</form>
+</body>
+</html>
