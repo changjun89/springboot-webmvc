@@ -4,9 +4,12 @@ import me.anpan.anpanwebmvc.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HandlerController {
@@ -19,24 +22,44 @@ public class HandlerController {
         return member;
     }
 
-
-    @PostMapping("/member/name/{name}")
-    @ResponseBody
-    public Member getMemmberByName(@Valid  @ModelAttribute Member member , BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
-            System.out.println("#########################################################");
-            bindingResult.getAllErrors().forEach(c->{
-                System.out.println(c.toString());
-            });
-            System.out.println("#########################################################");
-        }
-        return member;
-    }
-
     @GetMapping("/member/form")
     public String memberForm( Model model) {
-        model.addAttribute("member",new Member());
+        Member member = new Member();
+        member.setName("changjun");
+        member.setTall(170);
+        model.addAttribute("member",member);
         return "member/form";
     }
+
+
+    @PostMapping("/member")
+    public String  getMemmberByName(@Validated @ModelAttribute Member member , BindingResult bindingResult,Model model) {
+        if(bindingResult.hasErrors()){
+            return "/member/form";
+        }
+
+//        List<Member> memberList = new ArrayList<Member>();
+//        memberList.add(member);
+//        model.addAttribute(memberList);
+        //save 로직
+
+        return "redirect:/member/list";
+    }
+
+    @GetMapping("/member/list")
+    public String getMembers(Model model){
+        //select 로직
+        Member member = new Member();
+        member.setName("spring");
+        member.setTall(100);
+
+        List<Member> memberList = new ArrayList<>();
+        memberList.add(member);
+        model.addAttribute(memberList);
+
+        return "/member/list";
+    }
+
+
 
 }

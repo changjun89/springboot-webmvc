@@ -3,8 +3,6 @@ package me.anpan.anpanwebmvc.web.controller;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
-
 @RestController
 public class PracticeController {
 
@@ -19,7 +17,7 @@ public class PracticeController {
         return "events";
     }
 
-    @PostMapping(value = "/events" ,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/events", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String events3() {
         return "events";
     }
@@ -29,7 +27,7 @@ public class PracticeController {
         return "events";
     }
 
-    @PutMapping(value = "/events" ,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping(value = "/events", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String events5() {
         return "events";
     }
