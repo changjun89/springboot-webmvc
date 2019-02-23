@@ -18,6 +18,7 @@ import java.util.List;
 @SessionAttributes("member")
 public class HandlerController {
 
+
     @GetMapping("/member/form/name")
     public String memberForm(Model model) {
         model.addAttribute("member",new Member());
