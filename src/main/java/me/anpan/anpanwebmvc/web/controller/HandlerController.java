@@ -1,10 +1,12 @@
 package me.anpan.anpanwebmvc.web.controller;
 
 import me.anpan.anpanwebmvc.Member;
+import me.anpan.anpanwebmvc.web.MemberValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -18,6 +20,18 @@ import java.util.List;
 @SessionAttributes("member")
 public class HandlerController {
 
+    @InitBinder("member")
+    public void initMemberBinder(WebDataBinder webDataBinder) {
+        webDataBinder.setValidator(new MemberValidator());
+    }
+
+    @ModelAttribute
+    public void categories(Model model) {
+        List list = new ArrayList();
+        list.add("study");
+        list.add("playing");
+        model.addAttribute("categories",list);
+    }
 
     @GetMapping("/member/form/name")
     public String memberForm(Model model) {

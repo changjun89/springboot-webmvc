@@ -59,7 +59,8 @@ public class HandlerControllerTest {
         mockMvc.perform(get("/member/list").sessionAttr("visitTime", LocalDateTime.now())
         .flashAttr("newMember",member))
         .andDo(print())
-        .andExpect(status().isOk());
+        .andExpect(status().isOk())
+        .andExpect(model().attributeExists("categories"));
 
 
     }
