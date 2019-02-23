@@ -49,8 +49,8 @@ public class HandlerController {
             return "/member/form-tall";
         }
 
-        redirectAttributes.addAttribute("name","leechangjun");
-        redirectAttributes.addAttribute("tall",175);
+
+        redirectAttributes.addFlashAttribute("newMember",member);
         sessionStatus.setComplete();
         return "redirect:/member/list";
     }

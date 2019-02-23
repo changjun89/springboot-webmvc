@@ -1,11 +1,14 @@
 package me.anpan.anpanwebmvc.web.controller;
 
+import me.anpan.anpanwebmvc.Member;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.time.LocalDateTime;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -44,6 +47,21 @@ public class HandlerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("member/form"))
                 .andExpect(model().attributeExists("member"));
+    }
+
+
+    @Test
+    public void getMembers() throws Exception {
+
+        Member member = new Member();
+        member.setName("hi");
+        member.setTall(3);
+        mockMvc.perform(get("/member/list").sessionAttr("visitTime", LocalDateTime.now())
+        .flashAttr("newMember",member))
+        .andDo(print())
+        .andExpect(status().isOk());
+
+
     }
 
 
