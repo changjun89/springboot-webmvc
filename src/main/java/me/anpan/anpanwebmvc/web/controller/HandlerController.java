@@ -1,6 +1,7 @@
 package me.anpan.anpanwebmvc.web.controller;
 
 import me.anpan.anpanwebmvc.Member;
+import me.anpan.anpanwebmvc.web.MemberException;
 import me.anpan.anpanwebmvc.web.MemberValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,13 @@ import java.util.List;
 @SessionAttributes("member")
 public class HandlerController {
 
+    @ExceptionHandler({MemberException.class ,RuntimeException.class})
+    public String memberErrorHandeler(RuntimeException e ,Model model) {
+
+        model.addAttribute("message","runtime 에러입니다.");
+        return "error";
+    }
+
     @InitBinder("member")
     public void initMemberBinder(WebDataBinder webDataBinder) {
         webDataBinder.setValidator(new MemberValidator());
@@ -35,8 +43,9 @@ public class HandlerController {
 
     @GetMapping("/member/form/name")
     public String memberForm(Model model) {
-        model.addAttribute("member",new Member());
-        return "member/form-name";
+        throw new MemberException();
+//        model.addAttribute("member",new Member());
+//        return "member/form-name";
     }
 
     @PostMapping("/member/form/name")
