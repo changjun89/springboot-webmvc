@@ -35,8 +35,9 @@ public class MemberApiTest {
         String json = objectMapper.writeValueAsString(member);
         mockMvc.perform(post("/api/member")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(json))
-                .andExpect(status().isOk())
+                .content(json)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.name").value("leechangjun1"))
                 .andExpect(jsonPath("$.tall").value(-1));
     }
