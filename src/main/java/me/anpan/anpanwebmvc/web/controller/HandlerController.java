@@ -21,25 +21,6 @@ import java.util.List;
 @SessionAttributes("member")
 public class HandlerController {
 
-    @ExceptionHandler({MemberException.class ,RuntimeException.class})
-    public String memberErrorHandeler(RuntimeException e ,Model model) {
-
-        model.addAttribute("message","runtime 에러입니다.");
-        return "error";
-    }
-
-    @InitBinder("member")
-    public void initMemberBinder(WebDataBinder webDataBinder) {
-        webDataBinder.setValidator(new MemberValidator());
-    }
-
-    @ModelAttribute
-    public void categories(Model model) {
-        List list = new ArrayList();
-        list.add("study");
-        list.add("playing");
-        model.addAttribute("categories",list);
-    }
 
     @GetMapping("/member/form/name")
     public String memberForm(Model model) {
