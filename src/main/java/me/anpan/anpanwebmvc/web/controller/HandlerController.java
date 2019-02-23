@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
@@ -38,25 +39,34 @@ public class HandlerController {
     }
 
     @PostMapping("/member/form/tall")
-    public String  memmberFormTallSubmit(@Validated @ModelAttribute Member member , BindingResult bindingResult,Model model,SessionStatus sessionStatus) {
+    public String  memmberFormTallSubmit(@Validated @ModelAttribute Member member ,
+                                         BindingResult bindingResult,Model model,
+                                         SessionStatus sessionStatus,
+                                         RedirectAttributes redirectAttributes
+                                        )
+    {
         if(bindingResult.hasErrors()){
             return "/member/form-tall";
         }
+
+        redirectAttributes.addAttribute("name","leechangjun");
+        redirectAttributes.addAttribute("tall",175);
         sessionStatus.setComplete();
         return "redirect:/member/list";
     }
 
     @GetMapping("/member/list")
-    public String getMembers(Model model , @SessionAttribute("visitTime") LocalDateTime visitTime, HttpSession session) {
+    public String getMembers(Model model , @SessionAttribute("visitTime") LocalDateTime visitTime, HttpSession session,@ModelAttribute("newMember") Member newMember) {
         Object visitTime1 = (LocalDateTime)session.getAttribute("visitTime");
-        System.out.println("@@ : " + visitTime1);
-        System.out.println(visitTime);
+
+
         Member member = new Member();
         member.setName("spring");
         member.setTall(100);
 
         List<Member> memberList = new ArrayList<>();
         memberList.add(member);
+        memberList.add(newMember);
 
         model.addAttribute("memberList",memberList);
 
