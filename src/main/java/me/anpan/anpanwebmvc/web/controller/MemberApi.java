@@ -19,7 +19,7 @@ public class MemberApi {
     @PostMapping
     public ResponseEntity<Member> createMember(@RequestBody @Valid Member member, BindingResult bindingResult) {
         //save event
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();
         }
 

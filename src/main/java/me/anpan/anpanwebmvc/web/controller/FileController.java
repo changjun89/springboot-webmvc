@@ -30,12 +30,12 @@ public class FileController {
     }
 
     @PostMapping("/file")
-    public String fileUpload(@RequestParam MultipartFile file ,
+    public String fileUpload(@RequestParam MultipartFile file,
                              RedirectAttributes attributes) {
 
         String message = file.getOriginalFilename() + "is uploaded";
         System.out.println("message :" + message);
-        attributes.addFlashAttribute("message",message);
+        attributes.addFlashAttribute("message", message);
         return "redirect:/file";
     }
 
@@ -53,7 +53,6 @@ public class FileController {
                 .header(HttpHeaders.CONTENT_TYPE, type)
                 .header(HttpHeaders.CONTENT_LENGTH, String.valueOf(file.length()))
                 .body(resource);
-
 
 
     }

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import sun.reflect.generics.tree.BaseType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +15,10 @@ import java.util.List;
 @ControllerAdvice(assignableTypes = HandlerController.class)
 public class BaseController {
 
-    @ExceptionHandler({MemberException.class ,RuntimeException.class})
-    public String memberErrorHandeler(RuntimeException e , Model model) {
+    @ExceptionHandler({MemberException.class, RuntimeException.class})
+    public String memberErrorHandeler(RuntimeException e, Model model) {
 
-        model.addAttribute("message","runtime 에러입니다.");
+        model.addAttribute("message", "runtime 에러입니다.");
         return "error";
     }
 
@@ -33,6 +32,6 @@ public class BaseController {
         List list = new ArrayList();
         list.add("study");
         list.add("playing");
-        model.addAttribute("categories",list);
+        model.addAttribute("categories", list);
     }
 }

@@ -13,9 +13,9 @@ public class MemberValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        Member member = (Member)o;
-        if(member.getName().equalsIgnoreCase("aaa")) {
-            errors.rejectValue("name","wrongvalue","error");
+        Member member = (Member) o;
+        if (member.getName().equalsIgnoreCase("aaa")) {
+            errors.rejectValue("name", "wrongvalue", "error");
         }
     }
 }

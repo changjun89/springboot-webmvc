@@ -8,7 +8,6 @@ import java.time.LocalDate;
 
 public class Member {
 
-
     private int id;
 
     @NotBlank
@@ -20,12 +19,12 @@ public class Member {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate startDate;
 
-    public Integer getTall() {
-        return tall;
+    public int getId() {
+        return id;
     }
 
-    public void setTall(Integer tall) {
-        this.tall = tall;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -36,8 +35,12 @@ public class Member {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public Integer getTall() {
+        return tall;
+    }
+
+    public void setTall(Integer tall) {
+        this.tall = tall;
     }
 
     public LocalDate getStartDate() {
@@ -48,7 +51,5 @@ public class Member {
         this.startDate = startDate;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
 }
