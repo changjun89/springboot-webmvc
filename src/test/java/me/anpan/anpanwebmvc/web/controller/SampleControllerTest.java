@@ -23,7 +23,7 @@ public class SampleControllerTest {
         mockMvc.perform(get("/hello"))
                 .andDo(print())
                 .andExpect(status().isOk());
-                //.andExpect(content().string("hello"));
+        //.andExpect(content().string("hello"));
     }
 
 
